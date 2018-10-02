@@ -1,5 +1,4 @@
 const DatabaseError = require('./DatabaseError');
-const FileError = require('./FileError');
 const ApiError = require('./ApiError');
 
 let errorHandler = (error, req, res, next) => {
@@ -19,27 +18,6 @@ let errorHandler = (error, req, res, next) => {
             field: error.field,
         });
     } if (error instanceof DatabaseError.DuplicateResultError) {
-        // respond with 400 status and include relevant error details
-        return res.status(400).json({
-            type: error.name,
-            message: error.message.toString(),
-            field: error.field,
-        });
-    } if (error instanceof FileError.FileTypeError) {
-        // respond with 400 status and include relevant error details
-        return res.status(400).json({
-            type: error.name,
-            message: error.message.toString(),
-            field: error.field,
-        });
-    } if (error instanceof FileError.FileOpenError) {
-        // respond with 400 status and include relevant error details
-        return res.status(500).json({
-            type: error.name,
-            message: error.message.toString(),
-            field: error.field,
-        });
-    } if (error instanceof FileError.FileUploadError) {
         // respond with 400 status and include relevant error details
         return res.status(400).json({
             type: error.name,
