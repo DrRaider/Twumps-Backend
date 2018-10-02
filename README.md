@@ -1,6 +1,6 @@
-## NodeJS-Seed
+## TwumpsAPI
 
-NodeJS RESTFUL server seed
+Platform to present dynamic data using D3 charts. We aim to find interesting statistics through Donald Trump twitter account.
 
 ## Getting Started
 
@@ -27,9 +27,6 @@ sqlite3 data/db/database.db < data/db/db_script.sql
 ```
 
 Edit the configuration file `.env`
-If you need to setup a proxy, put its address for the following variables :   
-`HTTP_PROXY`   
-`HTTPS_PROXY`
 
 ### Start the server
 ```
