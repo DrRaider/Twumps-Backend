@@ -131,5 +131,5 @@ fabric.properties
 .idea/*
 data/db/database.db
 data/csv
-
+logs.log
 # End of https://www.gitignore.io/api/node,webstorm
