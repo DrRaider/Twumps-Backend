@@ -96,9 +96,6 @@ To resume our project, we’re going to make a website about Donald Trump’s Tw
 We are going to get all the tweet of Trump with all the informations linked from the Twitter API as his profile. We will store them into a database and then show it to the client with some statistics
 ![capture](https://user-images.githubusercontent.com/23191626/46653555-ae0e9100-cba6-11e8-9761-7a9730435662.PNG)
 
-#### Of which a formal specification can be given in the form of an algorithm for the most advanced parts
-
-
 ### Plan
 #### Define a roadmap, with the phases (or cycles, or sprints) and intermediate stages (subgoals) of development in order to achieve the main goal (successful defense) / Estimate the workload of each phase and associated tasks / Establish a provisional timetable with milestone dates for milestones and objectives to be achieved for it, collectively and individually / Include in this agenda regular team intermediate points, physical or remote, to review progress on the current phase and specify collective and individual objectives for the next sprint. A weekly frequency is a good frequency.
 
