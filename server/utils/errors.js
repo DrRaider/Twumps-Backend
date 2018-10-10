@@ -1,42 +1,41 @@
-const DatabaseError = require('./DatabaseError');
-const ApiError = require('./ApiError');
+const DatabaseError = require('./DatabaseError')
+const ApiError = require('./ApiError')
 
 let errorHandler = (error, req, res, next) => {
-
-    if (error instanceof DatabaseError.DatabaseRequestError) {
-        // respond with 400 status and include relevant error details
-        return res.status(503).json({
-            type: error.name,
-            message: error.message.toString(),
-            field: error.field,
-        });
-    } if (error instanceof DatabaseError.EmptyResultError) {
-        // respond with 400 status and include relevant error details
-        return res.status(204).json({
-            type: error.name,
-            message: error.message.toString(),
-            field: error.field,
-        });
-    } if (error instanceof DatabaseError.DuplicateResultError) {
-        // respond with 400 status and include relevant error details
-        return res.status(400).json({
-            type: error.name,
-            message: error.message.toString(),
-            field: error.field,
-        });
-    } if (error instanceof ApiError.ApiError) {
-        // respond with 400 status and include relevant error details
-        return res.status(500).json({
-            type: error.name,
-            message: error.message.toString(),
-            field: error.field
-        });
-    }  else {
-        // This is some other kind of error, let the default error handler deal with it
-        return next(error)
-    }
-};
+  if (error instanceof DatabaseError.DatabaseRequestError) {
+    // respond with 400 status and include relevant error details
+    return res.status(503).json({
+      type: error.name,
+      message: error.message.toString(),
+      field: error.field
+    })
+  } if (error instanceof DatabaseError.EmptyResultError) {
+    // respond with 400 status and include relevant error details
+    return res.status(204).json({
+      type: error.name,
+      message: error.message.toString(),
+      field: error.field
+    })
+  } if (error instanceof DatabaseError.DuplicateResultError) {
+    // respond with 400 status and include relevant error details
+    return res.status(400).json({
+      type: error.name,
+      message: error.message.toString(),
+      field: error.field
+    })
+  } if (error instanceof ApiError.ApiError) {
+    // respond with 400 status and include relevant error details
+    return res.status(500).json({
+      type: error.name,
+      message: error.message.toString(),
+      field: error.field
+    })
+  } else {
+    // This is some other kind of error, let the default error handler deal with it
+    return next(error)
+  }
+}
 
 module.exports = {
-    errorHandler
-};
+  errorHandler
+}
