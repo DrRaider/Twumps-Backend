@@ -10,4 +10,12 @@ router.get('/retweets', async (req, res, next) => {
   }
 })
 
+router.get('/tagcloud', async (req, res, next) => {
+  try {
+    res.send(await dataset.getTagCloud())
+  } catch (err) {
+    return next(err)
+  }
+})
+
 module.exports = router
