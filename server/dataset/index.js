@@ -2,6 +2,12 @@ const express = require('express')
 const router = express.Router()
 const dataset = require('./dataset')
 
-router.get('/', async (req, res, next) => {
-  // TODO
+router.get('/retweets', async (req, res, next) => {
+  try {
+    res.send(await dataset.getAllRetweets())
+  } catch (err) {
+    return next(err)
+  }
 })
+
+module.exports = router
