@@ -2,7 +2,14 @@ const datasetDao = require('./dataset.dao')
 const natural    = require('natural')
 
 const getAllRetweets = async () => {
-  return datasetDao.getAllRetweets()
+  await datasetDao.getAllRetweets()
+    .then((data) => {
+      // TODO: transform date to Date object
+      return data
+    })
+    .catch((err) => {
+      throw err
+    })
 }
 
 const getTagCloud = async () => {
