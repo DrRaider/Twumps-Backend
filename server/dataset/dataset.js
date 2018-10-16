@@ -39,19 +39,20 @@ const getTagCloud = async () => {
         for (let j in words) {
           words[j] = words[j].toLowerCase()
 
-          if (ret.find(x => x.word === words[j])) {
-            let id = ret.findIndex(x => x.word === words[j])
-            ret[id].counter++
+          if (ret.find(x => x['key'] === words[j])) {
+            let id = ret.findIndex(x => x['key'] === words[j])
+            ret[id]['value']++
           } else {
             ret.push({
-              'word': words[j],
-              'counter': 1
+              'key': words[j],
+              'value': 1
             })
           }
         }
       }
-      ret = ret.sort(function (a, b) { return a['counter'] > b['counter'] ? -1 : 1 })
+      ret = ret.sort(function (a, b) { return a['value'] > b['value'] ? -1 : 1 })
       ret = ret.slice(0, 100)
+      console.log(ret)
       return ret
     })
     .catch((err) => {
