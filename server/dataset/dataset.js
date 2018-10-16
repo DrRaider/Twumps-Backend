@@ -13,6 +13,16 @@ const getAllRetweets = async () => {
     })
 }
 
+const getSearch = async (keyword) => {
+  return datasetDao.getSearch(keyword)
+    .then((data) => {
+      return data
+    })
+    .catch((err) => {
+      throw err
+    })
+}
+
 const getTagCloud = async () => {
   return datasetDao.getAllContentTweets()
     .then((data) => {
@@ -60,5 +70,5 @@ const getTagCloud = async () => {
 }
 
 module.exports = {
-  getAllRetweets, getTagCloud
+  getAllRetweets, getTagCloud, getSearch 
 }

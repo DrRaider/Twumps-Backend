@@ -18,4 +18,11 @@ router.get('/tagcloud', async (req, res, next) => {
   }
 })
 
+router.post('/search', async (req, res, next) => {
+  try {
+    res.send(await dataset.getSearch(req.body.keyword))
+  } catch (err) {
+    return next(err)
+  }
+})
 module.exports = router
