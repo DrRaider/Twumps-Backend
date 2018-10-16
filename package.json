@@ -21,6 +21,7 @@
     "request": "latest",
     "request-promise": "^4.2.2",
     "sqlite3": "^4.0.0",
+    "stopword": "^0.1.13",
     "tedious-promises": "^0.4.1",
     "twitter": "^1.7.1",
     "uuid": "^3.2.1",
