@@ -28,19 +28,16 @@ const getTagCloud = async () => {
     .then((data) => {
       // Data treatment
       let ret = []
+      let max = 1
+
       for (let i in data) {
         let tweet = data[i]
 
-        // Clean URLs, \n, numbers from data
-        tweet.CONTENT = tweet.CONTENT.replace(/(?:https?):\/\/[\n\S]+/g, '')
-        tweet.CONTENT = tweet.CONTENT.replace(/\\n+/g, '')
-        tweet.CONTENT = tweet.CONTENT.replace(/\d+/g, '')
-
-        // Clean prepositions from data
+        // // Clean prepositions from data
         let tokenizer = new natural.WordTokenizer()
         let content = tokenizer.tokenize(tweet.CONTENT)
         let words = stopword.removeStopwords(content)
-        words = stopword.removeStopwords(words, ['realdonaldtrump', 'will', 'when', 'pm', 'am', 'amp', 'one', 'don', 'why', 'she', 'want', 'via'])
+        words = stopword.removeStopwords(words, ['realdonaldtrump', '000', 'https', 'http', 'will', 'when', 'pm', 'am', 'amp', 'one', 'don', 'why', 'she', 'want', 'via', 'say', 'keep', 'doing', 'show', 'soon', 'long'])
 
         // Remove letter (length 1)
         words = words.filter(x => x.length > 2)
@@ -49,20 +46,23 @@ const getTagCloud = async () => {
         for (let j in words) {
           words[j] = words[j].toLowerCase()
 
-          if (ret.find(x => x['key'] === words[j])) {
-            let id = ret.findIndex(x => x['key'] === words[j])
-            ret[id]['value']++
+          let id = ret.findIndex(x => x[0] === words[j])
+          if (id === -1) {
+            ret.push([words[j], 1])
           } else {
-            ret.push({
-              'key': words[j],
-              'value': 1
-            })
+          	ret[id][1]++
+          	max = ret[id][1] > max ? ret[id][1] : max
           }
         }
       }
-      ret = ret.sort(function (a, b) { return a['value'] > b['value'] ? -1 : 1 })
+      ret = ret.sort(function (a, b) { return a[1] > b[1] ? -1 : 1 })
       ret = ret.slice(0, 100)
-      console.log(ret)
+
+      // Percentage
+      for (let i in ret) {
+      	ret[i][1] = (ret[i][1] * 100) / max
+      }
+
       return ret
     })
     .catch((err) => {
