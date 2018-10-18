@@ -24,6 +24,25 @@ const getSearch = async (keyword) => {
 }
 
 const getTagCloud = async () => {
+  return datasetDao.getTagCloud()
+    .then((ret) => {
+      const max = ret[0].COUNT
+      // Percentage
+      for (let i in ret) {
+        ret[i].COUNT = (ret[i].COUNT * 100) / max
+      }
+      let done = []
+      ret.forEach((object) => {
+        done.push([object.WORD, object.COUNT])
+      })
+      return done
+    })
+    .catch((err) => {
+      throw err
+    })
+}
+
+const setTagCloud = async () => {
   return datasetDao.getAllContentTweets()
     .then((data) => {
       // Data treatment
@@ -50,26 +69,22 @@ const getTagCloud = async () => {
           if (id === -1) {
             ret.push([words[j], 1])
           } else {
-          	ret[id][1]++
-          	max = ret[id][1] > max ? ret[id][1] : max
+            ret[id][1]++
+            max = ret[id][1] > max ? ret[id][1] : max
           }
         }
       }
-      ret = ret.sort(function (a, b) { return a[1] > b[1] ? -1 : 1 })
-      ret = ret.slice(0, 100)
-
-      // Percentage
-      for (let i in ret) {
-      	ret[i][1] = (ret[i][1] * 100) / max
-      }
-
-      return ret
+      return datasetDao.setTagCloud(ret)
     })
     .catch((err) => {
       throw err
     })
 }
 
+const updateTagCloud = async (data) => {
+  return datasetDao.updateTagCloud(data)
+}
+
 module.exports = {
-  getAllRetweets, getTagCloud, getSearch 
+  getAllRetweets, getTagCloud, getSearch, setTagCloud, updateTagCloud
 }

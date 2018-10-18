@@ -18,6 +18,14 @@ router.get('/tagcloud', async (req, res, next) => {
   }
 })
 
+router.get('/settagcloud', async (req, res, next) => {
+  try {
+    res.send(await dataset.setTagCloud())
+  } catch (err) {
+    return next(err)
+  }
+})
+
 router.post('/search', async (req, res, next) => {
   try {
     res.send(await dataset.getSearch(req.body.keyword))
