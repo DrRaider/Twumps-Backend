@@ -2,6 +2,7 @@ const sqlite = require('../sqlite')
 
 const getAllContentAndCreatedAtTweets = async () => {
   return sqlite.all('SELECT CREATED_AT, CONTENT FROM TWEETS')
+  // To have more realistic results, add WHERE SOURCE = "Twitter for Android" at the end of the query
 }
 
 const getEmotion = async () => {

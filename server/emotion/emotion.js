@@ -17,12 +17,12 @@ const setEmotion = async () => {
   return emotionDao.getAllContentAndCreatedAtTweets()
     .then(async (data) => {
       data.sort(function (left, right) {
-        return moment.utc(left.CREATED_AT, 'dd MMM DD HH:mm:ss ZZ YYYY').diff(moment.utc(right.CREATED_AT, 'dd MMM DD HH:mm:ss ZZ YYYY'))
+        return moment.utc(left.CREATED_AT, 'YYYY-MM-DD HH:mm:ss').diff(moment.utc(right.CREATED_AT, 'YYYY-MM-DD HH:mm:ss'))
       })
       // Get indexes for each year
       let years = {}
       for (let i = 0; i < data.length; i++) {
-        let year = moment(data[i].CREATED_AT, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').format('YYYY')
+        let year = moment(data[i].CREATED_AT, 'YYYY-MM-DD HH:mm:ss', 'en').format('YYYY')
         if (year in years) {
           years[year][1] = i
         } else {
