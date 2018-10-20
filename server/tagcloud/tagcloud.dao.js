@@ -1,5 +1,9 @@
 const sqlite = require('../sqlite')
 
+const getAllContentTweets = async () => {
+  return sqlite.all('SELECT content FROM tweets')
+}
+
 const getTagCloud = async () => {
   return sqlite.all('SELECT WORD, COUNT FROM TAGCLOUD ORDER BY COUNT DESC LIMIT 150')
 }
@@ -19,5 +23,5 @@ const updateTagCloud = async (data) => {
 }
 
 module.exports = {
-  getTagCloud, setTagCloud, updateTagCloud
+  getAllContentTweets, getTagCloud, setTagCloud, updateTagCloud
 }
