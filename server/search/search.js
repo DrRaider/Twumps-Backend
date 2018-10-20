@@ -1,7 +1,7 @@
-const datasetDao = require('./search.dao')
+const searchDao = require('./search.dao')
 
 const getSearch = async (keyword) => {
-  return datasetDao.getSearch(keyword)
+  return searchDao.getSearch(keyword)
     .then((data) => {
       return data
     })
