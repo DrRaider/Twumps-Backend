@@ -17,12 +17,12 @@ const setEmotion = async () => {
   return emotionDao.getAllContentAndCreatedAtTweets()
     .then(async (data) => {
       data.sort(function (left, right) {
-        return moment.utc(left.CREATED_AT, 'YYYY-MM-DD HH:mm:ss').diff(moment.utc(right.CREATED_AT, 'YYYY-MM-DD HH:mm:ss'))
+        return moment.utc(left.created, 'YYYY-MM-DD HH:mm:ss').diff(moment.utc(right.created, 'YYYY-MM-DD HH:mm:ss'))
       })
       // Get indexes for each year
       let years = {}
       for (let i = 0; i < data.length; i++) {
-        let year = moment(data[i].CREATED_AT, 'YYYY-MM-DD HH:mm:ss', 'en').format('YYYY')
+        let year = moment(data[i].created, 'YYYY-MM-DD HH:mm:ss', 'en').format('YYYY')
         if (year in years) {
           years[year][1] = i
         } else {
@@ -30,7 +30,6 @@ const setEmotion = async () => {
           years[year][0] = i
         }
       }
-      console.log(years)
       for (let year in years) {
         let sentiment = new Sentiment()
         let start = years[year][0]
@@ -43,7 +42,7 @@ const setEmotion = async () => {
         let negCount = 0
         // get the sum of all positivity, negativity and neutrality of each year
         for (let i = start; i <= end; i++) {
-          let result = sentiment.analyze(data[i].CONTENT).score
+          let result = sentiment.analyze(data[i].content).score
           if (result > 0) {
             pos += result
             posCount++

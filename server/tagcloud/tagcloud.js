@@ -5,14 +5,14 @@ const stopword = require('stopword')
 const getTagCloud = async () => {
   return tagcloudDao.getTagCloud()
     .then((ret) => {
-      const max = ret[0].COUNT
+      const max = ret[0].count
       // Percentage
       for (let i in ret) {
-        ret[i].COUNT = (ret[i].COUNT * 100) / max
+        ret[i].count = (ret[i].count * 100) / max
       }
       let done = []
       ret.forEach((object) => {
-        done.push([object.WORD, object.COUNT])
+        done.push([object.word, object.count])
       })
       return done
     })
@@ -33,7 +33,7 @@ const setTagCloud = async () => {
 
         // // Clean prepositions from data
         let tokenizer = new natural.WordTokenizer()
-        let content = tokenizer.tokenize(tweet.CONTENT)
+        let content = tokenizer.tokenize(tweet.content)
         let words = stopword.removeStopwords(content)
         words = stopword.removeStopwords(words, ['realdonaldtrump', '000', 'https', 'http', 'will', 'when', 'pm', 'am', 'amp', 'one', 'don', 'why', 'she', 'want', 'via', 'say', 'keep', 'doing', 'show', 'soon', 'long'])
 

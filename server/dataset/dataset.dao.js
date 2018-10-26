@@ -1,7 +1,7 @@
 const sqlite = require('../sqlite')
 
 const getAllRetweets = async () => {
-  return sqlite.all('SELECT retweet_count, created_at FROM tweets')
+  return sqlite.all('SELECT RETWEET_COUNT, CREATED FROM TWEETS')
 }
 
 module.exports = {

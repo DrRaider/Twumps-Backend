@@ -1,7 +1,7 @@
 const sqlite = require('../sqlite')
 
 const getAllContentAndCreatedAtTweets = async () => {
-  return sqlite.all('SELECT CREATED_AT, CONTENT FROM TWEETS')
+  return sqlite.all('SELECT CREATED, CONTENT FROM TWEETS WHERE proba > 0.90')
   // To have more realistic results, add WHERE SOURCE = "Twitter for Android" at the end of the query
 }
 
@@ -14,7 +14,7 @@ const setEmotion = async (year, pos, neutral, neg) => {
 }
 
 const updateEmotion = async (data) => {
-  return sqlite.run('INSERT INTO tagcloud (word, count) VALUES ("' + data.word + '", ' + data.count + ')')
+  return sqlite.run('INSERT INTO EMOTION (WORD, COUNT) VALUES ("' + data.word + '", ' + data.count + ')')
 }
 
 module.exports = {

@@ -6,9 +6,8 @@ const getCityList = async () => {
     .then(data => {
       for (let i in data) {
         let tweet = data[i]
-        let results = tweet.CONTENT.split(/[ ,.:!?]+/)
+        let results = tweet.content.split(/[ ,.:!?]+/)
         results = results.split(/https?:\/\/[^\s]+/)
-        console.log(results)
         if (results.length > 0) {
           for (const word of results) {
             if (word !== '' && word !== 'Trump' && word.length > 8) { // TODO: filter adjectives, verbs etc. checkout wordpos (added already via yarn)

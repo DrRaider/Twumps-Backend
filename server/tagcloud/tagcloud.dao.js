@@ -1,7 +1,7 @@
 const sqlite = require('../sqlite')
 
 const getAllContentTweets = async () => {
-  return sqlite.all('SELECT CONTENT FROM TWEETS')
+  return sqlite.all('SELECT CONTENT FROM TWEETS  WHERE AUTHOR = "Mr. Trump"')
 }
 
 const getTagCloud = async () => {
