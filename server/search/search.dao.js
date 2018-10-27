@@ -1,11 +1,11 @@
 const sqlite = require('../sqlite')
 
 const getSearch = async (keyword) => {
-  return sqlite.all('SELECT CONTENT, RETWEET_COUNT, FAVORITE_COUNT, CREATED, ID_STR FROM TWEETS WHERE CONTENT LIKE "%' + keyword + '%" ORDER BY RETWEET_COUNT DESC LIMIT 20')
+  return sqlite.all('SELECT id_str FROM tweets WHERE content LIKE "%' + keyword + '%" ORDER BY retweet_count DESC LIMIT 20')
 }
-
+//content, retweet_count, favorite_count, created, 
 const getCount = async (keyword) => {
-  return sqlite.all('SELECT COUNT(CONTENT) AS COUNT FROM TWEETS WHERE CONTENT LIKE "%' + keyword + '%"')
+  return sqlite.all('SELECT COUNT(content) AS COUNT FROM tweets WHERE content LIKE "%' + keyword + '%"')
 }
 module.exports = {
   getSearch, getCount
