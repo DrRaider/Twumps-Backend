@@ -60,10 +60,6 @@ const setTagCloud = async () => {
     })
 }
 
-const updateTagCloud = async (data) => {
-  return tagcloudDao.updateTagCloud(data)
-}
-
 module.exports = {
-  getTagCloud, setTagCloud, updateTagCloud
+  getTagCloud, setTagCloud
 }

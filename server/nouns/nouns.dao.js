@@ -9,7 +9,7 @@ const addTweetCity = async (city, tweetId) => {
 }
 
 const getAllContentRetweets = async () => {
-  return sqlite.all('SELECT CONTENT FROM TWEETS')
+  return sqlite.all('SELECT ID, CONTENT FROM TWEETS LIMIT 50')
 }
 module.exports = {
   getCityList, getAllContentRetweets, addTweetCity

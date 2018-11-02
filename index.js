@@ -15,7 +15,7 @@ app.use(helmet())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
-app.use(express.static('data/images'))
+app.use(express.static('data/img'))
 
 // Call app routers
 require('./server/app')(app)

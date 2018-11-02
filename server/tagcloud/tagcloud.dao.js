@@ -18,10 +18,6 @@ const setTagCloud = async (data) => {
   return true
 }
 
-const updateTagCloud = async (data) => {
-  return sqlite.run('INSERT INTO TAGCLOUD (WORD, COUNT) VALUES ("' + data.word + '", ' + data.count + ')')
-}
-
 module.exports = {
-  getAllContentTweets, getTagCloud, setTagCloud, updateTagCloud
+  getAllContentTweets, getTagCloud, setTagCloud
 }

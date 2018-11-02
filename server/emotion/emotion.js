@@ -27,30 +27,23 @@ const setEmotion = async () => {
         let sentiment = new Sentiment()
         let start = years[year][0]
         let end = years[year][1]
-        let pos = 0 // scrore
         let posCount = 0 // Number of positive tweets
-        let neutral = 0
         let neutralCount = 0
-        let neg = 0
         let negCount = 0
         // get the sum of all positivity, negativity and neutrality of each year
         for (let i = start; i <= end; i++) {
-          // TODO: remove make america great again
+          data[i].content.replace('great', '')
           let result = sentiment.analyze(data[i].content).score
           if (result > 0) {
-            pos += result
             posCount++
           }
           if (result < 0) {
-            neg += result
             negCount++
           }
           if (result === 0) {
-            neutral += result
             neutralCount++
           }
         }
-        // TODO : use percentage and score together to evaluate th elevel of positivity/negativity/neutrality in the percentage
         // Calculate the percentage
         posCount *= 100 / (end - start + 1)
         neutralCount *= 100 / (end - start + 1)
@@ -69,11 +62,6 @@ const setEmotion = async () => {
     })
 }
 
-const updateEmotion = async (data) => {
-  // TODO
-  return emotionDao.updateEmotion(data)
-}
-
 module.exports = {
-  getEmotion, setEmotion, updateEmotion
+  getEmotion, setEmotion
 }

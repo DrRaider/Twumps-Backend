@@ -13,10 +13,6 @@ const setEmotion = async (year, pos, neutral, neg) => {
   return sqlite.run('INSERT INTO EMOTION (YEAR, POS, NEUTRAL, NEG) VALUES (' + year + ', ' + pos + ', ' + neutral + ', ' + neg + ')')
 }
 
-const updateEmotion = async (data) => {
-  return sqlite.run('INSERT INTO EMOTION (WORD, COUNT) VALUES ("' + data.word + '", ' + data.count + ')')
-}
-
 module.exports = {
-  getAllContentAndCreatedAtTweets, getEmotion, setEmotion, updateEmotion
+  getAllContentAndCreatedAtTweets, getEmotion, setEmotion
 }
