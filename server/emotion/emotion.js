@@ -4,13 +4,6 @@ let moment = require('moment')
 
 const getEmotion = async () => {
   return emotionDao.getEmotion()
-    .then((ret) => {
-      // TODO : adapt data to d3js
-      return ret
-    })
-    .catch((err) => {
-      throw err
-    })
 }
 
 const setEmotion = async () => {
@@ -42,6 +35,7 @@ const setEmotion = async () => {
         let negCount = 0
         // get the sum of all positivity, negativity and neutrality of each year
         for (let i = start; i <= end; i++) {
+          // TODO: remove make america great again
           let result = sentiment.analyze(data[i].content).score
           if (result > 0) {
             pos += result
