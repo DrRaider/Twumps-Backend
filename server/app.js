@@ -4,7 +4,7 @@ let searchRouter = require('./search')
 let nounsRouter = require('./nouns')
 
 // services call
-let createApp = (server) => {
+function createApp (server) {
   server.use('/tagcloud', tagcloudRouter)
   server.use('/emotion', emotionRouter)
   server.use('/search', searchRouter)

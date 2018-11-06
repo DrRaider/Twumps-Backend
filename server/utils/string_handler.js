@@ -1,7 +1,8 @@
-const upperFirstLetter = (string) => {
+function upperFirstLetter (string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
-const upperFirstLowerOthers = (string) => {
+
+function upperFirstLowerOthers (string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
 }
 

@@ -1,19 +1,16 @@
 const searchDao = require('./search.dao')
 
-const getSearch = async (keyword) => {
-  return searchDao.getSearch(keyword)
-    .then((data) => {
-      let content = { data: {}, count: 0 }
-      content.data = data
-      return searchDao.getCount(keyword)
-        .then((data) => {
-          content.count = data[0].count
-          return content
-        })
-    })
-    .catch((err) => {
-      throw err
-    })
+async function getSearch (keyword) {
+  try {
+    const data = await searchDao.getSearch(keyword)
+    let content = { data: {}, count: 0 }
+    content.data = data
+    const results = await searchDao.getCount(keyword)
+    content.count = results[0].count
+    return content
+  } catch (e) {
+    throw e
+  }
 }
 
 module.exports = {
