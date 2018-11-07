@@ -6,6 +6,10 @@ const _cliProgress = require('cli-progress')
 const bar1 = new _cliProgress.Bar({}, _cliProgress.Presets.shades_classic)
 
 async function getCityList () {
+  return nounsDao.getCityList()
+}
+
+async function setCityList () {
   try {
     const data = await nounsDao.getAllContentRetweets()
     console.log('Started nouns analysis...')
@@ -61,5 +65,5 @@ function delay (ms) {
 }
 
 module.exports = {
-  getCityList
+  setCityList, getCityList
 }

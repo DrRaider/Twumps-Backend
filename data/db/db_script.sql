@@ -1,4 +1,4 @@
-ALTER TABLE tweets RENAME TO TempOldTable;
+/* ALTER TABLE tweets RENAME TO TempOldTable;
 CREATE TABLE  IF NOT EXISTS tweets (
  id INTEGER NOT NULL PRIMARY KEY,
  uploaded INTEGER NOT NULL,
@@ -17,6 +17,7 @@ CREATE TABLE  IF NOT EXISTS tweets (
 
 INSERT INTO tweets (uploaded, created, content, author, proba, source, user, id_str) SELECT uploaded, created, text, author, proba, source, user, id_str FROM TempOldTable;
 DROP TABLE IF EXISTS TempOldTable;
+*/
 
 CREATE TABLE IF NOT EXISTS tagcloud (
  id INTEGER PRIMARY KEY,
@@ -30,4 +31,10 @@ CREATE TABLE IF NOT EXISTS emotion (
  pos INTEGER NOT NULL,
  neutral INTEGER NOT NULL,
  neg INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS cities (
+ id INTEGER PRIMARY KEY,
+ city TEXT NOT NULL,
+ tweetId INTEGER NOT NULL
 );
