@@ -7,6 +7,7 @@ async function getSearch (keyword) {
 async function getCount (keyword) {
   return sqlite.all('SELECT COUNT(content) AS COUNT FROM tweets WHERE content LIKE ?', ['%' + keyword + '%'])
 }
+
 module.exports = {
   getSearch, getCount
 }
