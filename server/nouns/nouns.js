@@ -34,7 +34,14 @@ async function setCityList () {
           if (city !== undefined) {
             // array.push(city.display_name)
             try {
-              await nounsDao.addTweetCity(city, tweet.id)
+              let toSave = {
+                city: city.display_name,
+                lat: city.lat,
+                lon: city.lon,
+                tweetId: tweet.id_str,
+                retweetCount: tweet.retweet_count
+              }
+              await nounsDao.addTweetCity(toSave)
             } catch (e) {
               console.log(e)
             }
@@ -61,7 +68,7 @@ async function searchCity (name) {
       return filtered[0]
     }
   } catch (e) {
-    throw e
+    return undefined
   }
 }
 

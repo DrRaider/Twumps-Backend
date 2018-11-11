@@ -6,7 +6,7 @@ async function getAllContentAndCreatedAtTweets () {
 }
 
 async function getEmotion () {
-  return sqlite.all('SELECT * FROM EMOTION', [])
+  return sqlite.all('SELECT  ID, YEAR, POS, NEUTRAL, NEG FROM EMOTION', [])
 }
 
 async function setEmotion (year, pos, neutral, neg) {
