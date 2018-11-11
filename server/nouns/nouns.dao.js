@@ -1,7 +1,7 @@
 const sqlite = require('../sqlite')
 
 async function getCityList () {
-  return sqlite.all('SELECT CITY, TWEETID FROM CITIES', [])
+  return sqlite.all('SELECT CITY, TWEETID, LAT, LON FROM CITIES', [])
 }
 
 async function addTweetCity (city, tweetId) {
