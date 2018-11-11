@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const logger = require('./server/utils/logger')
 const errorHandler = require('./server/utils/errors').errorHandler
-let set = require('./server/nouns/nouns')
+
 require('dotenv').config()
 
 let app = express()
@@ -29,10 +29,5 @@ app.use('/', async (req, res) => {
 app.use(errorHandler)
 
 app.listen(process.env.WEB_PORT, () => {
-  try {
-    console.log(set.setCityList())
-  } catch (e) {
-    console.log(e)
-  }
   console.log(`App is listening on port ${process.env.WEB_PORT}`)
 })
