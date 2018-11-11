@@ -1,7 +1,7 @@
 const sqlite = require('../sqlite')
 
 async function getRetweet () {
-  return sqlite.all('SELECT id_str,CREATED FROM tweets ORDER BY retweet_count DESC LIMIT 10', [])
+  return sqlite.all('SELECT ID_STR, CREATED FROM TWEETS ORDER BY RETWEET_COUNT DESC LIMIT 1', [])
 }
 
 module.exports = {

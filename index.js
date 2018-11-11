@@ -6,6 +6,8 @@ const cors = require('cors')
 const logger = require('./server/utils/logger')
 const errorHandler = require('./server/utils/errors').errorHandler
 
+const set = require('./server/tagcloud/tagcloud')
+
 require('dotenv').config()
 
 let app = express()
@@ -28,5 +30,10 @@ app.use('/', async (req, res) => {
 app.use(errorHandler)
 
 app.listen(process.env.WEB_PORT, () => {
+  try {
+    console.log(set.setTagCloud())
+  } catch (e) {
+    console.log(e)
+  }
   console.log(`App is listening on port ${process.env.WEB_PORT}`)
 })

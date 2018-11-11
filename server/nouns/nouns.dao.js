@@ -5,11 +5,11 @@ async function getCityList () {
 }
 
 async function addTweetCity (city, tweetId) {
-  return sqlite.all('INSERT INTO CITIES (CITY, TWEET_ID) VALUES (?,?)', [city, tweetId])
+  return sqlite.run('INSERT INTO CITIES (CITY, TWEETID) VALUES (?,?)', [city.toString(), tweetId])
 }
 
 async function getAllContentRetweets () {
-  return sqlite.all('SELECT ID, CONTENT FROM TWEETS LIMIT 50', [])
+  return sqlite.all('SELECT ID, CONTENT FROM TWEETS', [])
 }
 module.exports = {
   getCityList, getAllContentRetweets, addTweetCity
