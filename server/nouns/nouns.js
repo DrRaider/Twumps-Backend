@@ -14,7 +14,7 @@ async function setCityList () {
     const data = await nounsDao.getAllContentRetweets()
     console.log('Started nouns analysis...')
     bar1.start(100, 0)
-    let array = []
+    // let array = []
     for (let i in data) {
       let tweet = data[i]
       let results = tweet.content.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '')
@@ -32,15 +32,19 @@ async function setCityList () {
           await delay(1000)
           const city = await searchCity(word[0])
           if (city !== undefined) {
-            array.push(city.display_name)
-            // nounsDao.addTweetCity(city, tweet.id)
+            // array.push(city.display_name)
+            try {
+              await nounsDao.addTweetCity(city, tweet.id)
+            } catch (e) {
+              console.log(e)
+            }
           }
         }
       }
       bar1.update(100 * i / data.length)
     }
     bar1.stop()
-    console.log(array)
+    // console.log(array)
     return true
   } catch (e) {
     throw e
@@ -49,6 +53,7 @@ async function setCityList () {
 
 async function searchCity (name) {
   try {
+    await delay(1000)
     const cities = await NominatimJS.search({ q: name })
     let filtered
     if (cities !== []) {
