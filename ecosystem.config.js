@@ -8,7 +8,7 @@ module.exports = {
       user: 'ec2-user',
       host: 'ec2-35-180-103-82.eu-west-3.compute.amazonaws.com',
       key: '~/.ssh/twumps.pem',
-      ref: 'origin/firstRelease',
+      ref: 'origin/master',
       repo: 'git@github.com:DrRaider/Twumps-BackEnd.git',
       path: '/home/ec2-user/twumps',
       'post-deploy': 'yarn install && pm2 startOrRestart ecosystem.config.js'
