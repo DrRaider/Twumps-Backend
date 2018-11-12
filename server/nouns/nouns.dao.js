@@ -1,7 +1,12 @@
 const sqlite = require('../sqlite')
 
 async function getCityList () {
-  return sqlite.all('SELECT CITY, TWEETID FROM CITIES', [])
+  return sqlite.all(
+    'SELECT CITY, LAT, LON, TWEETID, CAST(RETWEET_COUNT AS INT) AS retweet_count FROM CITIES AS T1 INNER JOIN (' +
+    'SELECT CITY AS CITY2, LAT AS LAT2, LON AS LON2, TWEETID AS TWEETID2, MAX(CAST(RETWEET_COUNT AS INT)) ' +
+    'AS MAXI FROM CITIES GROUP BY CITY2 HAVING COUNT(*)>6) AS T2 ON T1.CITY = T2.CITY2 ' +
+    'AND T1.LAT = T2.LAT2 AND T1.LON = T2.LON2 AND T1.TWEETID = T2.TWEETID2 AND CAST(T1.RETWEET_COUNT AS INT) = T2.MAXI'
+    , [])
 }
 
 async function addTweetCity (data) {
