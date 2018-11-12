@@ -6,7 +6,7 @@ module.exports = {
   deploy: {
     production: {
       user: 'ec2-user',
-      host: 'ec2-35-180-192-229.eu-west-3.compute.amazonaws.com',
+      host: 'ec2-35-180-103-82.eu-west-3.compute.amazonaws.com',
       key: '~/.ssh/twumps.pem',
       ref: 'origin/master',
       repo: 'git@github.com:DrRaider/Twumps-BackEnd.git',
